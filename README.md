@@ -12,6 +12,12 @@ Date and cvc: 12/34 567
 ### Features
 
 ```
+- Create project
+- Duplicate project
+- Delete project
+- Draw on the canvas
+- Change colours
+- Fetch shapes to the canvas
 - AI image generate
 - AI image background remove
 - Templates
