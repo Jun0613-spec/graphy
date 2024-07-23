@@ -44,12 +44,12 @@ const SidebarRoutes = () => {
             <Button
               onClick={() => mutation.mutate()}
               disabled={mutation.isPending}
-              className="w-full rounded-xl border-none hover:bg-white hover:opacity-75 transition"
+              className="w-full rounded-xl border-none hover:bg-white hover:opacity-75 dark:bg-emerald-600 transition"
               variant="outline"
               size="lg"
             >
               <Crown className="mr-2 size-4 fill-yellow-500 text-yellow-500" />
-              Upgrade to Graphy Pro
+              Upgrade to Pro
             </Button>
           </div>
           <div className="px-3">
