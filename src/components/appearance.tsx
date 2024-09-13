@@ -12,7 +12,7 @@ const Appearance = () => {
   const { theme, setTheme } = useTheme();
 
   return (
-    <div>
+    <>
       <div className="flex gap-5">
         <ActionTooltip label="Light" side="top">
           <button
@@ -55,7 +55,7 @@ const Appearance = () => {
           </button>
         </ActionTooltip>
       </div>
-    </div>
+    </>
   );
 };
 

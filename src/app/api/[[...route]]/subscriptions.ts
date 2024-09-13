@@ -60,7 +60,7 @@ const app = new Hono()
     const session = await stripe.checkout.sessions.create({
       success_url: `${process.env.NEXT_PUBLIC_APP_URL}?success=1`,
       cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}?canceled=1`,
-      payment_method_types: ["card", "revolut_pay"],
+      payment_method_types: ["card"],
       mode: "subscription",
       billing_address_collection: "auto",
       customer_email: auth.token.email || "",

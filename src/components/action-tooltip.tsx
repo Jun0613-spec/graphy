@@ -11,7 +11,6 @@ interface ActionTooltipProps {
   children: React.ReactNode;
   label: string;
   side?: "top" | "right" | "bottom" | "left";
-
   delay?: number;
 }
 
