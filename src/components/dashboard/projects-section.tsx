@@ -44,7 +44,7 @@ const ProjectsSection = () => {
   const updateNameMutation = useNameUpdateProject();
 
   const [editingProjectId, setEditingProjectId] = useState<string | null>(null);
-  const [newProjectName, setNewProjectName] = useState<string>("");
+  const [projectName, setProjectName] = useState<string>("");
 
   const onCopy = (id: string) => {
     duplicateMutation.mutate({ id });
@@ -53,22 +53,30 @@ const ProjectsSection = () => {
   const onDelete = async (id: string) => {
     const ok = await confirm();
 
-    if (ok) {
-      removeMutation.mutate({ id });
-    }
+    if (ok) removeMutation.mutate({ id });
   };
 
-  const onEdit = (id: string, currentName: string) => {
-    setEditingProjectId(id);
-    setNewProjectName(currentName);
-  };
-
-  const handleNameUpdate = () => {
-    if (editingProjectId) {
-      updateNameMutation.mutate({ id: editingProjectId, name: newProjectName });
+  const onEdit = async () => {
+    if (editingProjectId && projectName) {
+      await updateNameMutation.mutateAsync({
+        id: editingProjectId,
+        name: projectName,
+      });
       setEditingProjectId(null);
     }
   };
+
+  // const onEdit = (id: string, currentName: string) => {
+  //   setEditingProjectId(id);
+  //   setProjectName(currentName);
+  // };
+
+  // const handleNameUpdate = () => {
+  //   if (editingProjectId) {
+  //     updateNameMutation.mutate({ id: editingProjectId, name: projectName });
+  //     setEditingProjectId(null);
+  //   }
+  // };
 
   const { data, status, fetchNextPage, isFetchingNextPage, hasNextPage } =
     useGetProjects();
@@ -171,7 +179,10 @@ const ProjectsSection = () => {
                         <DropdownMenuItem
                           className="h-10 cursor-pointer"
                           disabled={updateNameMutation.isPending}
-                          onClick={() => onEdit(project.id, project.name)}
+                          onClick={() => {
+                            setEditingProjectId(project.id);
+                            setProjectName(project.name);
+                          }}
                         >
                           <Pencil className="size-4 mr-2" />
                           Edit
@@ -190,21 +201,21 @@ const ProjectsSection = () => {
           <div className="bg-white p-6 rounded-lg shadow-lg dark:bg-slate-800 max-w-md w-full">
             <h3 className="text-xl font-semibold mb-4">Edit Project Name</h3>
             <Input
-              value={newProjectName}
-              onChange={(e) => setNewProjectName(e.target.value)}
+              value={projectName}
+              onChange={(e) => setProjectName(e.target.value)}
               className="mb-4 border-gray-300 dark:border-slate-600 focus:border-blue-500 dark:focus:border-blue-400 dark:bg-zinc-800"
               placeholder="Enter new project name"
             />
             <div className="flex justify-end gap-x-3">
               <Button
-                variant="destructive"
+                variant="outline"
                 onClick={() => setEditingProjectId(null)}
-                className="text-gray-700 dark:text-gray-300 border-gray-300 dark:border-slate-600"
+                className="bg-red-600 hover:bg-red-600/80 text-white hover:text-neutral-50 border-red-600 dark:border-red-600"
               >
                 Cancel
               </Button>
               <Button
-                onClick={handleNameUpdate}
+                onClick={onEdit}
                 disabled={updateNameMutation.isPending}
                 className="bg-blue-500 text-white hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700"
               >
