@@ -34,11 +34,5 @@ export const useLoadState = ({
 
       initialized.current = true;
     }
-  }, [
-    canvas,
-    autoZoom,
-    initialState, // no need, this is a ref
-    canvasHistory, // no need, this is a ref
-    setHistoryIndex, // no need, this is a dispatch
-  ]);
+  }, [canvas, autoZoom, initialState, canvasHistory, setHistoryIndex]);
 };
