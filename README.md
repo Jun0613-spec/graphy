@@ -1,6 +1,6 @@
 # About
 
-Graphy is Full stack graphic design SaaS web application using with React, Next.js, Next Auth, TailwindCSS, Drizzle ORM, PostgreSQL, Stripe, Fabric.js, Hono
+Graphy is Full stack graphic design SaaS web application using with React, Next.js, Next Auth, TailwindCSS, Drizzle ORM, PostgreSQL, Stripe, Fabric.js, Hono.js, react-query
 
 ### Stripe test card
 
